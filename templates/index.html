@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!-- Page Header-->
+{% set fname = 'assets/img/home-bg.jpg' %}
+{% set stat = 'static' %}
+<header class="masthead" style="background-image: url('{{ url_for(stat, filename = fname) }}')">
+
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>{{ params['blog_name'] }}</h1>
+                    <span class="subheading">{{ params['tagline'] }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!--Todo: Fetch it using for loop from database-->
+            {% for post in posts %}
+            <div class="post-preview">
+                <a href="/post/{{post.slug}}">
+                    <h2 class="post-title">{{post.title}}</h2>
+                    <h3 class="post-subtitle">{{post.tagline}}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">Admin</a>
+                    on {{post.date}}
+                </p>
+                <p>{{post.content[0:80]}} ... <a href="post/{{post.slug}}" style="font-size: 15px;">Read More</a></p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+            {% endfor %}
+            <!-- Pager-->
+            <div class="clearfix mb-3">
+                {% if prev == "#" %}
+                <a href="{{next}}" class="btn btn-primary">Next &rarr;</a>
+                {% else %}
+                    {% if next == "#" %}
+                    <a href="{{prev}}" class="btn btn-primary">&larr; Previous</a>
+                    {% else %}
+                    <a href="{{prev}}" class="btn btn-primary">&larr; Previous</a>
+                    <a href="{{next}}" class="btn btn-primary mx-5">Next &rarr;</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

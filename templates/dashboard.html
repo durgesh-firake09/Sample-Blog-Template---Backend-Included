@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!-- Page Header-->
+{% set fname = 'assets/img/home-bg.jpg' %}
+{% set stat = 'static' %}
+<header class="masthead" style="background-image: url('{{ url_for(stat, filename = fname) }}')">
+
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Admin Panel - Dashboard</h1>
+                    <span class="subheading">Manage your Posts and Fetch Them</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="container mb-4">
+                <h1 class="mb-3">Basic Functions</h1>
+                <a href="/edit/0"><button class="btn btn-primary">Add New Post</button></a>
+                <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+            </div>
+            <hr>
+            <h1 class="mb-3">Edit Posts</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">sno</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Tagline</th>
+                        <th scope="col">DateTime</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+
+                    <tr>
+                        <th scope="row">{{post.sno}}</th>
+                        <td><a href="/post/{{post.slug}}">{{post.title}}</a></td>
+                        <td>{{post.tagline}}</td>
+                        <td>{{post.date}}</td>
+                        <td><a href="/edit/{{post.sno}}"><button class="btn btn-primary">Edit</button></a></td>
+                        <td><a href="/delete/{{post.sno}}"><button class="btn btn-primary">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

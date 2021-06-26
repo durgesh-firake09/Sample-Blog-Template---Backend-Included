@@ -1,0 +1,21 @@
+{
+    "params":
+    {
+        "local_server" : true,
+        "local_uri" : "mysql://root:@localhost/your-database-name",
+        "prod_uri" : "mysql://root:@localhost/your-database-name",
+        "fb_url" : "https://www.facebook.com",
+        "tw_url" : "https://www.twitter.com",
+        "gh_url" : "https://www.github.com",
+        "blog_name" : "Blog Name",
+        "about_text" : "About Your Blog",
+        "tagline" : "Blog Tagline",
+        "gmail-user" : "your-email",
+        "gmail-password" : "your-password",
+        "admin-username" : "username",
+        "admin-password" : "password",
+        "no_of_posts" : 1
+    }
+}
+
+
